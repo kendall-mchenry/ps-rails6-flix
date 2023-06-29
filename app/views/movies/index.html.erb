@@ -1,5 +1,7 @@
 <ul>
-  <li>Iron Man</li>
-  <li>Superman</li>
-  <li>Spider-Man</li>
+  <% @movies.each do |movie| %>
+    <li><strong><%= movie.title %></strong> (<%= movie.rating %>):
+      <%= total_gross(movie) %>
+    <p> <%= truncate(movie.description, length: 40, separator: ' ') %></p> <p> <%= year_of(movie) %></p></li>
+  <% end %>
 </ul>

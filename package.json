@@ -7,11 +7,10 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "esbuild": "^0.18.10",
+    "jquery-ujs": "^1.2.3",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
-  "devDependencies": {
-  },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets"
   }

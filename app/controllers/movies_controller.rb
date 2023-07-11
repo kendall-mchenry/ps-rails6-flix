@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
 
   def index
-    @movies = Movie.all
+    @movies = Movie.released
   end
 
   def show
@@ -24,8 +24,11 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(movie_params)
-    @movie.save
-    redirect_to @movie
+    if @movie.save
+      redirect_to @movie
+    else
+      render :new
+    end
   end
 
   def destroy
@@ -37,7 +40,7 @@ class MoviesController < ApplicationController
 private
 
   def movie_params
-    params.require(:movie).permit(:title, :description, :rating, :released_on, :total_gross)
+    params.require(:movie).permit(:title, :description, :rating, :released_on, :total_gross, :director, :duration, :image_file_name)
   end
 
 

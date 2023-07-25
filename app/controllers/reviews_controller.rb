@@ -10,6 +10,10 @@ class ReviewsController < ApplicationController
     @review = @movie.reviews.new
   end
 
+  def edit
+    @review = @movie.reviews.find(params[:id])
+  end
+
   def create
     @review = @movie.reviews.new(review_params)
 
@@ -21,6 +25,16 @@ class ReviewsController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    @review = @movie.reviews.find(params[:id])
+    @review.destroy
+
+    respond_to do |format|
+      format.html { redirect_to movie_reviews_path, alert: "Review successfully deleted." }
+      format.json { head :no_content }
     end
   end
 

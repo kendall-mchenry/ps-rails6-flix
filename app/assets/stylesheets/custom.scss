@@ -356,7 +356,19 @@ ul.reviews {
       @extend .btn, .btn-sm, .btn-outline-danger;
       margin-left: 0.5rem;
     }
+
+    .review_button {
+      @extend .btn, .btn-sm, .btn-outline-secondary;
+      margin-left: 0.5rem;
+    }
   }
+}
+
+a.review {
+  @extend .btn, .btn-success;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 1rem;
 }
 
 // Footer

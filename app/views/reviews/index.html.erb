@@ -1,4 +1,8 @@
 <h1>Reviews for <%= link_to @movie.title, @movie %></h1>
+<%= link_to "Write Review", new_movie_review_path(@movie),
+            class: "review" %>
+<!--TODO: think about adding a collapsible section here with the new review form-->
+<hr>
 
 <ul class="reviews">
   <% @reviews.each do |review| %>
@@ -13,6 +17,8 @@
       <p>
         <%= review.comment %>
       </p>
+      <%= link_to "Edit Review", edit_movie_review_path(@movie, review), class: "review_button" %>
+      <%= link_to 'Delete Review', movie_review_path(@movie, review), class: 'button', data: { turbo_method: :delete, confirm: 'Are you sure?' } %>
     </li>
   <% end %>
 </ul>

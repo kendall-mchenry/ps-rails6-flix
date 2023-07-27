@@ -14,7 +14,11 @@ class Movie < ApplicationRecord
   validates :rating, inclusion: { in: RATINGS }
 
   def flop?
-    total_gross.blank? || total_gross < 225_000_000
+    if reviews.count > 50 && reviews.average(:stars) > 4
+      false
+    elsif total_gross.blank? || total_gross < 225_000_000
+      true
+    end
   end
 
   def self.released
@@ -31,6 +35,14 @@ class Movie < ApplicationRecord
 
   def self.recently_added
     order(created_at: :desc).limit(3)
+  end
+
+  def average_stars
+    reviews.average(:stars) || 0.0
+  end
+
+  def average_stars_as_percent
+    (self.average_stars / 5.0) * 100
   end
 
 end
